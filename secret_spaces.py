@@ -15,6 +15,10 @@ def say_hello():
     return render_template("about.html")
 
 
+# loads a form for user to log in
+@app.route("/login", methods=["GET"])
+def show_login():
+    return render_template("login.html")
 
 
 
