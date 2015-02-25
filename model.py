@@ -10,12 +10,31 @@ Base = declarative_base()
 Base.query = session.query_property()
 
 
+
+class User(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key = True)
+    email = Column(String(128), nullable=False)
+    password = Column(String(128), nullable=False)
+
+    def __repr__(self):
+        return "<email=%s password=%s>" %(self.email, self.password)
+
+
 class Location(Base):
     __tablename__ = "locations"
 
     id = Column(Integer, primary_key = True)
     name = Column(String(128), nullable=False)
-    address = Column(String(128), nullable=True)
+    address = Column(String(128), nullable=False)
+    description = Column(String(666), nullable=True)
+    hours = Column(String(128), nullable=True)
+    seating_info = Column(String(128), nullable=True)
+    food_info = Column(String(128), nullable=True)
+    restrooms = Column(String(128), nullable=True)
+    food_yn = Column(String(3), nullable=True)
+    seating_yn = Column(String(3), nullable=True)
+
 
     def __repr__(self):
       return "<name=%s address=%s>" % (self.name, self.address)
