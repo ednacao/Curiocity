@@ -40,6 +40,16 @@ class Location(Base):
       return "<name=%s address=%s>" % (self.name, self.address)
 
 
+class Image(Base):
+    __tablename__ = "images"
+    id = Column(Integer, primary_key = True)
+    location_id = Column(Integer, ForeignKey('locations.id'), nullable=True)
+    url = Column(String(128), nullable=True)
+
+    location = relationship("Location",
+                backref=backref("images", order_by=id))
+
+
 
 def connect():
     global ENGINE
