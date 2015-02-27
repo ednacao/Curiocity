@@ -76,8 +76,9 @@ def new():
 def load_profile(popoid):
     print "\n\n%s\n\n" %(popoid)
     info = model.session.query(model.Location).get(popoid)
+    url = model.session.query(model.Image).get(popoid)
     print "info is %s" %(info)
-    return render_template("profile.html", location=info)
+    return render_template("profile.html", location=info, image=url)
 
 
 

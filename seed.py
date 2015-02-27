@@ -1,5 +1,5 @@
 import model
-from model import Location
+from model import Location, Image
 import csv
 
 def load_locations(session):
@@ -25,12 +25,21 @@ def load_locations(session):
             session.add(new_locations)
         session.commit() 
 
-
+def load_images(session):
+    filename=("./POPOS_Listings_images.csv")
+    with open(filename, 'rb') as csvfile:
+        openfile = csv.reader(csvfile, delimiter='\t')
+        for row in openfile:
+            image_url = row[2]
+            new_images = Image(url=image_url)
+            session.add(new_images)
+        session.commit()
 
 
 def main(session):
     # You'll call each of the load_* functions with the session as an argument
     load_locations(session)
+    load_images(session)
 
 
 if __name__ == "__main__":
