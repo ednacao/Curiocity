@@ -26,6 +26,8 @@ def load_locations(session):
         session.commit() 
 
 
+
+
 def main(session):
     # You'll call each of the load_* functions with the session as an argument
     load_locations(session)

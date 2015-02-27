@@ -66,6 +66,22 @@ def process_acct():
 	return redirect("/")
 
 
+@app.route("/new")
+def new():
+    all_locations = model.session.query(model.Location).all()
+    return render_template("new.html", locations=all_locations)
+
+
+@app.route("/profile/<int:popoid>")
+def load_profile(popoid):
+    print "\n\n%s\n\n" %(popoid)
+    info = model.session.query(model.Location).get(popoid)
+    print "info is %s" %(info)
+    return render_template("profile.html", location=info)
+
+
+
+
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads" our web app

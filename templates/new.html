@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>new</title>
+</head>
+<body>
+    {% for location in locations %}
+    <a href="/profile/{{location.id}}">
+    {{location.name}}</a>
+    <br>
+    {% endfor %}
+</body>
+</html>
+{% endblock %}
