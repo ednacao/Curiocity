@@ -1,12 +1,25 @@
 from flask import Flask, render_template, redirect, request, flash
 from flask import session as flask_session
 from model import session as model_session
-import model
+from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
+import model, urllib2
+
+"""api_token = DEFAULT_SECRET_TOKEN
+map_id = ecao.la8h2i58"""
 
 # "__name__" is a special Python variable for the name of the current module; Flask wants
 # to know this to know what any imported things are relative to.
 app = Flask(__name__)
 app.secret_key = 'thisisasecretkey'
+
+
+## Supply the access token using an access token query parameter:
+## https://api.tiles.mapbox.com/v4/{resource}.json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg
+
+### SSL
+### All API endpoint URLs support both http and https schemes. URI References in TileJSON response bodies default to HTTP regardless of the protocol used in the request. Include the ?secure querystring in the request to have resources in the response reference HTTPS endpoints.
+### https://api.tiles.mapbox.com/v4/{resource}.json?secure=1
+
 
 @app.route('/')
 def start_here():
@@ -65,11 +78,14 @@ def process_acct():
 	flask_session["email"] = email
 	return redirect("/")
 
-
+# FIX ME ---- display_images not working, 
+# and images=display_images is not correct
 @app.route("/new")
 def new():
     all_locations = model.session.query(model.Location).all()
-    return render_template("new.html", locations=all_locations)
+    display_images = model.session.query(model.Image).all()
+    return render_template("new.html", locations=all_locations,
+        images=display_images)
 
 
 @app.route("/profile/<int:popoid>")
@@ -79,6 +95,10 @@ def load_profile(popoid):
     url = model.session.query(model.Image).get(popoid)
     print "info is %s" %(info)
     return render_template("profile.html", location=info, image=url)
+
+@app.route("/map")
+def load_map():
+    return render_template("map.html")
 
 
 

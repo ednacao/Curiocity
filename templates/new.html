@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>new</title>
@@ -12,6 +13,9 @@
     {{location.name}}</a>
     <br>
     {% endfor %}
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+		<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 </body>
 </html>
 {% endblock %}
