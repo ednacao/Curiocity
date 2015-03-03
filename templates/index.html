@@ -16,10 +16,36 @@
 <li><a href="./map">map</a></li>
 <li><a href="./about">about</a></li>
 <li><a href="./create">create</a></li>
+<br>
+<li><button onclick="getLocation()">Where Am I?</button>
+	<p id="demo"></p>
 </ul>
 </nav>
       </div>
 </div>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script>
+		var x = document.getElementById("demo");
+
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(showPosition);
+		    } else { 
+		        x.innerHTML = "Geolocation is not supported by this browser.";
+		    }
+		}
+
+		function showPosition(position) {
+		    x.innerHTML = "Latitude: " + position.coords.latitude + 
+		    "<br>Longitude: " + position.coords.longitude;
+		    $.get("/pushcoords?lat=" + position.coords.latitude + "&long=" + position.coords.longitude, function(data){
+		    	// came back from server
+		    	console.log("I came back from the server!");
+		    	console.log(data);
+		    });	
+		}
+
+	</script>
 <br>
 <br>
 <br>

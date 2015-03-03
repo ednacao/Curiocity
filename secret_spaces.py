@@ -3,9 +3,10 @@ from flask import session as flask_session
 from model import session as model_session
 from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
 import model, urllib2
+import os
 
 """api_token = DEFAULT_SECRET_TOKEN
-map_id = ecao.la8h2i58"""
+map_id =    """
 
 # "__name__" is a special Python variable for the name of the current module; Flask wants
 # to know this to know what any imported things are relative to.
@@ -22,7 +23,7 @@ app.secret_key = 'thisisasecretkey'
 
 
 @app.route('/')
-def start_here():
+def start_here(): 
     return render_template("index.html")
 
 
@@ -98,7 +99,18 @@ def load_profile(popoid):
 
 @app.route("/map")
 def load_map():
-    return render_template("map.html")
+    public_key = DEFAULT_PUBLIC_TOKEN
+    print public_key
+    return render_template("map.html", public_token=public_key)
+
+
+
+# FIX ME     ADD LAT LONG TO SESSION
+@app.route("/pushcoords")
+def push_coords():
+    print request.args
+
+    return "Stuff happening here!"
 
 
 
