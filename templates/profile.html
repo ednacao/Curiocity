@@ -3,24 +3,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset=utf-8 />
     <title>Profile</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="../static/css/cover.css">
 </head>
-<body><center>
-
-		Name: {{ location.name }}<br>
-		Address: {{ location.address }}<br>
-		Description: {{ location.description }}<br>
-		Hours: {{ location.hours }}<br>
-		Seating Info: {{ location.seating_info }}<br>
-		Food Info: {{ location.food_info }}<br>
-		Restrooms? {{ location.restrooms }}<br>
-		Food? {{ location.food_yn }}<br>
-		Seating? {{ location.seating_yn}}<br>
+<body>
+	<div><center>
+		<table style="width:100%">
+		<tr>
+			<td>Name:</td><td> {{ location.name }}</td><br>
+		<tr>
+			<td>Address:</td><td> {{ location.address }}</td><br>
+		<tr>
+			<td>Description:</td><td> {{ location.description }}</td><br>
+		<tr>
+			<td>Hours:</td><td> {{ location.hours }}</td><br>
+		<tr>
+			<td>Seating Info:</td><td> {{ location.seating_info }}</td><br>
+		<tr>
+			<td>Food Info:</td><td> {{ location.food_info }}</td><br>
+		<tr>
+			<td>Restrooms?</td><td> {{ location.restrooms }}</td><br>
+		<tr>
+			<td>Food?</td><td> {{ location.food_yn }}</td><br>
+		<tr>
+		</td><td><td>Seating?</td><td> {{ location.seating_yn}}</td><br>
+	</div></center>
 	<div>
 		<img src="{{ image.url }}" ></img>
-	</div></center>
+	</div>
 </body>
 </html>
 {% endblock %}

@@ -5,13 +5,11 @@ from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
 import model, urllib2
 import os
 
-"""api_token = DEFAULT_SECRET_TOKEN
-map_id =    """
-
 # "__name__" is a special Python variable for the name of the current module; Flask wants
 # to know this to know what any imported things are relative to.
 app = Flask(__name__)
-app.secret_key = 'thisisasecretkey'
+app.secret_key = "w943irtugehbdvnsckmawqoe4"
+app.debug = True
 
 
 ## Supply the access token using an access token query parameter:
@@ -39,28 +37,47 @@ def show_login():
     return render_template("login.html")
 
 
-# NEED TO RE-DO -- FROM RATINGS EXERCISE
-# 
+
 @app.route("/login", methods=["POST"])
 def process_login():
-    """TODO: Receive the user's login credentials located in the 'request.form'
+    """Receive the user's login credentials located in the 'request.form'
     dictionary, look up the user, and store them in the session."""
 
     email = request.form['email']
     password = request.form['password']
 
     user = model_session.query(model.User).filter(model.User.email == email).first()
+    print "args are requested"
     if user != None:
         if email == user.email and password == user.password:
             flask_session['email'] = email
             flash("Hello %s! Login successful."% (user.email))
-            return redirect("/all_users")
+            return redirect("/user")
         else:
             flash("Incorrect password! Try again.")
+            print "got thru first"
             return redirect("/login")
+
     else: 
         flash("Create an account first!")
         return redirect("/create")
+
+
+# FIX ME     ADD LAT LONG TO SESSION - 
+# AND BE ABLE TO ACCESS THE SESSION USING JS
+@app.route("/pushcoords")
+def push_coords():
+    print request.args
+
+    return "Stuff happening here!"
+
+
+
+@app.route("/user", methods=["GET"])
+def load_user():
+    email = request.args.get('email')
+    user_email = model_session.query(model.User).filter(model.User.email == email).first()
+    return render_template("user.html", user_email=email)
 
 
 @app.route('/create', methods=["GET"])
@@ -81,11 +98,11 @@ def process_acct():
 
 # FIX ME ---- display_images not working, 
 # and images=display_images is not correct
-@app.route("/new")
+@app.route("/list")
 def new():
     all_locations = model.session.query(model.Location).all()
     display_images = model.session.query(model.Image).all()
-    return render_template("new.html", locations=all_locations,
+    return render_template("list.html", locations=all_locations,
         images=display_images)
 
 
@@ -100,17 +117,10 @@ def load_profile(popoid):
 @app.route("/map")
 def load_map():
     public_key = DEFAULT_PUBLIC_TOKEN
+    secret_key = DEFAULT_SECRET_TOKEN
     print public_key
-    return render_template("map.html", public_token=public_key)
+    return render_template("map.html", public_token=public_key, secret_token=secret_key)
 
-
-
-# FIX ME     ADD LAT LONG TO SESSION
-@app.route("/pushcoords")
-def push_coords():
-    print request.args
-
-    return "Stuff happening here!"
 
 
 
