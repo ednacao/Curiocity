@@ -36,8 +36,10 @@ def say_hello():
 def show_login():
     return render_template("login.html")
 
-
-
+# takings user form input and checked against db to see if user exists;
+# if user exists, success message flashes
+# if user exists but pw is incorrect, an 'incorrect pw' messages flashes
+# if user does not exist in db, then page is redirect to the 'create acct' page
 @app.route("/login", methods=["POST"])
 def process_login():
     """Receive the user's login credentials located in the 'request.form'
@@ -65,12 +67,35 @@ def process_login():
 
 # FIX ME     ADD LAT LONG TO SESSION - 
 # AND BE ABLE TO ACCESS THE SESSION USING JS
-@app.route("/pushcoords")
+@app.route("/pushcoords", methods=["GET"])
 def push_coords():
-    print request.args
+    """Receive the lat long of current user and store it in the session"""
+    latlong = request.args
+    latitude = request.args['lat']
+    longitude = request.args['long']
+    print "latlong: %s" % latlong
+    print "latitide: %s" % latitude
+    print "longitude: %s" % longitude
+
+    flask_session['lat'] = latitude
+    flask_session['long'] = longitude
+    print flask_session
+
+    print "request.args = %s" % request.args
+    # the result above is currently ImmutableMultiDict([('lat, u'37.7886534'), ('long, u'-122.41')])
+
 
     return "Stuff happening here!"
 
+# TEST -- take lat long from session in the GET pushcoords route and place in 
+# form template that contains mapbox api map latlong loading capability
+@app.route("/pushcoords", methods=["POST"])
+def load_profile_map():
+    """Take user lat long and send to mapbox to populate map datapoint"""
+    #function will use request.form/args (?) and place them in the URL query
+    #string that will populate the map; 
+    #use jinga in the map html form template to populate this URL string
+    pass #FIX ME --- NEED TO FIGURE OUT WHERE NEW MAP GOES
 
 
 @app.route("/user", methods=["GET"])
@@ -99,9 +124,9 @@ def process_acct():
 # FIX ME ---- display_images not working, 
 # and images=display_images is not correct
 @app.route("/list")
-def new():
-    all_locations = model.session.query(model.Location).all()
-    display_images = model.session.query(model.Image).all()
+def list():
+    all_locations = model.session.query(model.Location).all(popoid)
+    display_images = model.session.query(model.Image).all(popoid)
     return render_template("list.html", locations=all_locations,
         images=display_images)
 

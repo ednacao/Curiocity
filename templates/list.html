@@ -9,7 +9,8 @@
 <body>
     {% for location in locations %}
     <a href="/profile/{{location.id}}">
-    {{location.name}}</a>
+    {{ location.name }}</a><br>
+    <img src="{{ images.url }}"></img>
     <br>
     {% endfor %}
 </body>
