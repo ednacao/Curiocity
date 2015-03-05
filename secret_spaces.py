@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, flash
+from flask import Flask, render_template, redirect, request, flash, jsonify
 from flask import session as flask_session
 from model import session as model_session
 from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
@@ -36,6 +36,7 @@ def say_hello():
 def show_login():
     return render_template("login.html")
 
+
 # takings user form input and checked against db to see if user exists;
 # if user exists, success message flashes
 # if user exists but pw is incorrect, an 'incorrect pw' messages flashes
@@ -54,6 +55,7 @@ def process_login():
         if email == user.email and password == user.password:
             flask_session['email'] = email
             flash("Hello %s! Login successful."% (user.email))
+            print "user flask session %s" % email
             return redirect("/user")
         else:
             flash("Incorrect password! Try again.")
@@ -65,8 +67,9 @@ def process_login():
         return redirect("/create")
 
 
-# FIX ME     ADD LAT LONG TO SESSION - 
-# AND BE ABLE TO ACCESS THE SESSION USING JS
+# FIX ME - BE ABLE TO ACCESS THE SESSION USING JS
+# THE SESSION IS A RETURN OBJECT THAT EXISTS
+# ACROSS SCRIPTS --- CONSOLE.LOG Session to see what's in it
 @app.route("/pushcoords", methods=["GET"])
 def push_coords():
     """Receive the lat long of current user and store it in the session"""
@@ -79,11 +82,12 @@ def push_coords():
 
     flask_session['lat'] = latitude
     flask_session['long'] = longitude
-    print flask_session
+    print "flask session: %s" % flask_session
+    print "session latitide: %s" % latitude
+    print "session longitude: %s" % longitude
 
     print "request.args = %s" % request.args
     # the result above is currently ImmutableMultiDict([('lat, u'37.7886534'), ('long, u'-122.41')])
-
 
     return "Stuff happening here!"
 
@@ -93,7 +97,7 @@ def push_coords():
 def load_profile_map():
     """Take user lat long and send to mapbox to populate map datapoint"""
     #function will use request.form/args (?) and place them in the URL query
-    #string that will populate the map; 
+    #string that will populate the map; JSON??
     #use jinga in the map html form template to populate this URL string
     pass #FIX ME --- NEED TO FIGURE OUT WHERE NEW MAP GOES
 
@@ -125,8 +129,8 @@ def process_acct():
 # and images=display_images is not correct
 @app.route("/list")
 def list():
-    all_locations = model.session.query(model.Location).all(popoid)
-    display_images = model.session.query(model.Image).all(popoid)
+    all_locations = model.session.query(model.Location).all()
+    display_images = model.session.query(model.Image).all()
     return render_template("list.html", locations=all_locations,
         images=display_images)
 

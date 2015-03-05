@@ -2,17 +2,18 @@
 {% block body %}
 <!DOCTYPE html>
 <html>
-<head>
-    <title>list</title>
-        <link rel="stylesheet" href="static/css/style.css">
-</head>
-<body>
-    {% for location in locations %}
-    <a href="/profile/{{location.id}}">
-    {{ location.name }}</a><br>
-    <img src="{{ images.url }}"></img>
-    <br>
-    {% endfor %}
-</body>
+	<head>
+	    <title>list</title>
+	        <link rel="stylesheet" href="static/css/style.css">
+	</head>
+	<body>
+	    {% for location in locations %}
+	    <a href="/profile/{{location.id}}">
+	    {{ location.id }}: 
+	    {{ location.name }}</a><br>
+	    <img src="{{ images.url }}"></img>
+	    <br>
+	    {% endfor %}
+	</body>
 </html>
 {% endblock %}
