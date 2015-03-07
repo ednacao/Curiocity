@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
-{% block body %}
-<!DOCTYPE html>
-<html>
-<head>
+{% block head %}
     <title>Profile</title>
     <link rel="stylesheet" href="../static/css/cover.css">
-</head>
-<body>
-	<div><center>
+{% endblock %}
+{% block body %}
+
+	<div id='map-two' class='map pad2'>Map</div>
+	<div>
 		<table style="width:100%">
 		<tr>
 			<td>Name:</td><td> {{ location.name }}</td><br>
@@ -27,14 +26,37 @@
 			<td>Food?</td><td> {{ location.food_yn }}</td><br>
 		<tr>
 		</td><td><td>Seating?</td><td> {{ location.seating_yn}}</td><br>
-	</div></center>
+		<br>
+		<tr>
+			<td>Current Location is</td><td>Latitude: {{ lat }}, Longitude: {{ long }}</td>
+		</tr>
+	</table>
+	</div>
 	<div>
 		<img src="{{ image.url }}" ></img>
 	</div>
-</body>
-<!-- placeholder map for layout reference -->
-	<iframe width='100%' height='500px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/ecao.lce9cd80/attribution,zoompan,geocoder,share.html?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg'></iframe>
-</html>
+	<!-- placeholder map for lay	out reference -->
+
+	<script>
+	var latitude = Number("{{ lat }}");
+	var longitude = Number("{{ long }}");
+
+	// THIS IS THE PUBLIC ACCESS TOKEN!!!		// THIS IS THE PUBLIC ACCESS TOKEN!!!
+	L.mapbox.accessToken = "pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg";
+	L.mapbox.map('map-two', 'ecao.lce9cd80');
+	L.mapbox.map.setView([latitude, longitude]);
+
+	L.marker([latitude, longitude], {
+		icon: L.mapbox.marker.icon({
+		    'marker-size': 'large',
+		    'marker-symbol': 'bus',
+		    'marker-color': '#fa0'
+		 })
+	}).addTo(map);
+
+	</script>
+
+	<script src="/static/directions.js"></script>
 {% endblock %}
 
 

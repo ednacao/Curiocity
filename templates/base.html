@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>base</title>
-<link rel="stylesheet" href="static/css/cover.css">
-</head>
-<body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <a href="../..">
-        <img alt="Brand" src="http://www.stationcouriers.co.uk/addons/themes/station/img/home_small_icon.gif">
-      </a></a>
-    </div>
+  <head>
+    {% block head %}
+    {% endblock %}
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+
+
+      <title>base</title>
+  <link rel="stylesheet" href="static/css/cover.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <a href="../..">
+            <img alt="Brand" src="http://www.stationcouriers.co.uk/addons/themes/station/img/home_small_icon.gif">
+          </a></a>
+        </div>
+      </div>
+    </nav>
   </div>
-</nav>
-</div>
-     <div class="container">
-       {% with messages = get_flashed_messages() %}
-       {% if messages %}
-       {% for message in messages %}
-       <ul class="flashes">
-          <li>{{message}}</li>
-       </ul>
-       {% endfor %}
-        {% endif %}
-        {% endwith %}
-        {% block body %}{% endblock %}
-     </div>
-</body>
+       <div class="container">
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+         {% for message in messages %}
+         <ul class="flashes">
+            <li>{{message}}</li>
+         </ul>
+         {% endfor %}
+          {% endif %}
+          {% endwith %}
+          {% block body %}{% endblock %}
+       </div>
+  </body>
 </html>
 

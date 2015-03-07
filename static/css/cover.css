@@ -21,6 +21,22 @@ ul{margin:0;}
     
 }
 
+.map {
+  border-left:1px solid #fff;
+  position:absolute;
+  left:33.3333%;
+  width:66.6666%;
+  top:0;
+  bottom:0;
+  }
+
+.pad2 {
+  padding:300px;
+  -webkit-box-sizing:border-box;
+     -moz-box-sizing:border-box;
+          box-sizing:border-box;
+  }
+
 img.bg {
   /* Set rules to fill background */
   min-height: 100%;

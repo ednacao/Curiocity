@@ -25,7 +25,7 @@ def start_here():
     return render_template("index.html")
 
 
-# route to display a simple "about" page
+# route to display an "about" page
 @app.route('/about')
 def say_hello():
     return render_template("about.html")
@@ -137,11 +137,14 @@ def list():
 
 @app.route("/profile/<int:popoid>")
 def load_profile(popoid):
+    print flask_session
     print "\n\n%s\n\n" %(popoid)
     info = model.session.query(model.Location).get(popoid)
     url = model.session.query(model.Image).get(popoid)
+    flask_session_lat = flask_session["lat"]
+    flask_session_long = flask_session["long"]
     print "info is %s" %(info)
-    return render_template("profile.html", location=info, image=url)
+    return render_template("profile.html", location=info, image=url, lat=flask_session_lat, long=flask_session_long)
 
 @app.route("/map")
 def load_map():

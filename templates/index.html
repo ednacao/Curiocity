@@ -39,10 +39,19 @@
 		function showPosition(position) {
 		    x.innerHTML = "Latitude: " + position.coords.latitude + 
 		    "<br>Longitude: " + position.coords.longitude;
+		    var longitude = position.coords.longitude;
+		    var latitude = position.coords.latitude;
+
+		    // make a new function that adds this pin to a map
+		    // call it here or use the object literal pattern
+		    // and pass in the long and lat to the add pin function.
+		    $('.container').append("<input id='bomb' type='hidden' name='bomb' value=" + longitude + "," + latitude + "/>");
+
 		    $.get("/pushcoords?lat=" + position.coords.latitude + "&long=" + position.coords.longitude, function(data){
 		    	// came back from server
 		    	console.log("I came back from the server!");
 		    	console.log(data);
+		    	debugger;
 		    });	
 		}
 
