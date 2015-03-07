@@ -43,15 +43,36 @@
 
 	// THIS IS THE PUBLIC ACCESS TOKEN!!!		// THIS IS THE PUBLIC ACCESS TOKEN!!!
 	L.mapbox.accessToken = "pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg";
-	L.mapbox.map('map-two', 'ecao.lce9cd80');
-	L.mapbox.map.setView([latitude, longitude]);
+	var map = L.mapbox.map('map-two', 'ecao.lce9cd80');
+	// .setView([37, -122]);
 
-	L.marker([latitude, longitude], {
-		icon: L.mapbox.marker.icon({
-		    'marker-size': 'large',
-		    'marker-symbol': 'bus',
-		    'marker-color': '#fa0'
-		 })
+	var featureLayer = L.mapbox.featureLayer()
+    .addTo(map);
+
+    alert("HEY MEGGIE, UR NOT CRAY");
+
+	featureLayer.setGeoJSON({
+    // this feature is in the GeoJSON format: see geojson.org
+    // for the full specification
+	    type: 'Feature',
+	    geometry: {
+	        type: 'Point',
+	        // coordinates here are in longitude, latitude order because
+	        // x, y is the standard for GeoJSON and many formats
+	        coordinates: [
+	          longitude,
+	          latitude 
+	        ]
+	    },
+	    properties: {
+	        title: 'Peregrine Espresso',
+	        description: '1718 14th St NW, Washington, DC',
+	        // one can customize markers by adding simplestyle properties
+	        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+	        'marker-size': 'large',
+	        'marker-color': '#BE9A6B',
+	        'marker-symbol': 'cafe'
+	    }
 	}).addTo(map);
 
 	</script>
