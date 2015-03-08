@@ -18,73 +18,43 @@
 		<li><a href="./create">create</a></li>
 		<li><a href="./login">log in</a></li>
 		<br>
-		<li><button onclick="getLocation()">Where Am I?</button>
+		<li><button id="get-location">Where Am I?</button>
 		<p id="demo"></p>
 	</ul>
 		</nav>
       </div>
 
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script>
-		var x = document.getElementById("demo");
+	<!-- <script>
+	// 	var x = document.getElementById("demo");
 
-		function getLocation() {
-		    if (navigator.geolocation) {
-		        navigator.geolocation.getCurrentPosition(showPosition);
-		    } else { 
-		        x.innerHTML = "Geolocation is not supported by this browser.";
-		    }
-		}
+	// 	function getLocation() {
+	// 	    if (navigator.geolocation) {
+	// 	        navigator.geolocation.getCurrentPosition(showPosition);
+	// 	    } else { 
+	// 	        x.innerHTML = "Geolocation is not supported by this browser.";
+	// 	    }
+	// 	}
 
-		function showPosition(position) {
-		    x.innerHTML = "Latitude: " + position.coords.latitude + 
-		    "<br>Longitude: " + position.coords.longitude;
-		    var longitude = position.coords.longitude;
-		    var latitude = position.coords.latitude;
+	// 	function showPosition(position) {
+	// 	    x.innerHTML = "Latitude: " + position.coords.latitude + 
+	// 	    "<br>Longitude: " + position.coords.longitude;
+	// 	    var longitude = position.coords.longitude;
+	// 	    var latitude = position.coords.latitude;
 
-		    // make a new function that adds this pin to a map
-		    // call it here or use the object literal pattern
-		    // and pass in the long and lat to the add pin function.
-		    $('.container').append("<input id='bomb' type='hidden' name='bomb' value=" + longitude + "," + latitude + "/>");
+	// 	    // make a new function that adds this pin to a map
+	// 	    // call it here or use the object literal pattern
+	// 	    // and pass in the long and lat to the add pin function.
+	// 	    $('.container').append("<input id='bomb' type='hidden' name='bomb' value=" + longitude + "," + latitude + "/>");
 
-		    $.get("/pushcoords?lat=" + position.coords.latitude + "&long=" + position.coords.longitude, function(data){
-		    	// came back from server
-		    	console.log("I came back from the server!");
-		    	console.log(data);
-		    	debugger;
-		    });	
-		}
-
-	</script>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!-- SOME FILLER TEXT TO SORT OUT DIV ELEMENTS -->
+	// 	    $.get("/pushcoords?lat=" + position.coords.latitude + "&long=" + position.coords.longitude, function(data){
+	// 	    	// came back from server
+	// 	    	console.log("I came back from the server!");
+	// 	    	console.log(data);
+	// 	    	debugger;
+	// 	    });	
+	// 	}
+<! SOME FILLER TEXT TO SORT OUT DIV ELEMENTS -->
 <p><font color="white">
 	Food truck gluten-free banksy, fap occupy bespoke whatever mustache. Occupy kogi kale chips chillwave, odd future typewriter iphone twee truffaut viral ethical artisan put a bird on it single-origin coffee banh mi. Master cleanse brunch occupy trust fund marfa yr. Chillwave ennui fap, wes anderson cliche cosby sweater brooklyn vegan organic. Shoreditch PBR semiotics, chillwave art party photo booth terry richardson. Synth ennui semiotics mustache pickled, biodiesel food truck cosby sweater readymade mixtape letterpress pour-over leggings. Food truck freegan vinyl thundercats, post-ironic ennui wes anderson banh mi four loko synth photo booth authentic 3 wolf moon.
 
