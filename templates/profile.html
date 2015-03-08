@@ -44,12 +44,13 @@
 	// THIS IS THE PUBLIC ACCESS TOKEN!!!		// THIS IS THE PUBLIC ACCESS TOKEN!!!
 	L.mapbox.accessToken = "pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg";
 	var map = L.mapbox.map('map-two', 'ecao.lce9cd80');
+					scrollWheelZoom: false;
 	// .setView([37, -122]);
 
 	var featureLayer = L.mapbox.featureLayer()
     .addTo(map);
 
-    alert("HEY MEGGIE, UR NOT CRAY");
+    // alert("HEY MEGGIE, UR NOT CRAY");
 
 	featureLayer.setGeoJSON({
     // this feature is in the GeoJSON format: see geojson.org
@@ -65,13 +66,13 @@
 	        ]
 	    },
 	    properties: {
-	        title: 'Peregrine Espresso',
-	        description: '1718 14th St NW, Washington, DC',
+	        title: 'Current Location',
+	        description: [longitude, latitude],
 	        // one can customize markers by adding simplestyle properties
 	        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-	        'marker-size': 'large',
-	        'marker-color': '#BE9A6B',
-	        'marker-symbol': 'cafe'
+	        'marker-size': 'medium',
+	        'marker-color': '#82CCB3',
+	        'marker-symbol': 'triangle'
 	    }
 	}).addTo(map);
 
