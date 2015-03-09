@@ -6,7 +6,6 @@ var secretSpaces = {
 	},
 
 	events: function(){
-		debugger;
 		var self = this;
 		$('#get-location').on("click", function(e){
 			e.preventDefault();
@@ -29,21 +28,24 @@ var secretSpaces = {
 	},
 
 	storePosition: function(position){
-		var self = this;
 		alert("STORE POSITION");
 		debugger;
 		var coordinates = "Latitude: " + position.coords.latitude + 
 		    "Longitude: " + position.coords.longitude;
 		    var longitude = position.coords.longitude;
 		    var latitude = position.coords.latitude;
-		self.showPosition(longitude, latitude); //FIXME - undefined is not a function, 'this' is a window (should be an object)
-		self.getCoords(position); //FIXME - undefined is not a function
+		this.showPosition(longitude, latitude); //FIXME - undefined is not a function, 'this' is a window (should be an object)
+		this.getCoords(position); //FIXME - undefined is not a function
+		return position;
 	},
 
 	getLocation: function(){
 		debugger;
+		var self = this;
 		if (navigator.geolocation) {
-    		navigator.geolocation.getCurrentPosition(this.storePosition);
+			navigator.geolocation.getCurrentPosition(function(position){
+				self.storePosition(position); // suggested by Louise
+			}); // suggested by Louise
 		}	else { 
 	    	console.log ("Geolocation is not supported by this browser.");
 		}
