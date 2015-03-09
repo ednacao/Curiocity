@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="static/css/cover.css">
   </head>
   <body>
-
+<!--     navbar code via bootstrap -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -33,10 +33,11 @@
          {% endfor %}
           {% endif %}
           {% endwith %}
-          {% block body %}{% endblock %}
        </div>
+       <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
        <script type="text/javascript" src="../static/js/secretSpaces.js">
        </script>
+       
   </body>
 </html>
-
+    {% block body %}{% endblock %}
