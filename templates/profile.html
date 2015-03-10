@@ -25,7 +25,7 @@
 		<tr>
 			<td>Food?</td><td> {{ location.food_yn }}</td><br>
 		<tr>
-		</td><td><td>Seating?</td><td> {{ location.seating_yn}}</td><br>
+			<td>Seating?</td><td> {{ location.seating_yn}}</td><br>
 		<br>
 		<tr>
 			<td>Current Location is</td><td>Latitude: {{ lat }}, Longitude: {{ long }}</td>
@@ -36,6 +36,7 @@
 		<img src="{{ image.url }}" ></img>
 	</div>
 	<!-- placeholder map for lay	out reference -->
+
 	<script>
 	var latitude = Number("{{ lat }}");
 	var longitude = Number("{{ long }}");
@@ -90,7 +91,7 @@
 		        ]
 		    },
 		    properties: {
-		        title: 'Profile Location',
+		        title: '{{location.name}}',
 		        description: [profile_longitude, profile_latitude],
 		        // one can customize markers by adding simplestyle properties
 		        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
@@ -102,6 +103,7 @@
 	]).addTo(map);
 
 	</script>
+	<script src="http://api.tiles.mapbox.com/v4/directions/mapbox.walking/{{long}},{{lat}};{{location.profile_longitude}},{{location.profile_latitude}}.json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg"></script>
 
 	<script src="/static/directions.js"></script>
 {% endblock %}
