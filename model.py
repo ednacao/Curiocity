@@ -34,6 +34,8 @@ class Location(Base):
     restrooms = Column(String(128), nullable=True)
     food_yn = Column(String(3), nullable=True)
     seating_yn = Column(String(3), nullable=True)
+    profile_longitude = Column(Integer, nullable=False)
+    profile_latitude = Column(Integer, nullable=False)
 
 
     def __repr__(self):

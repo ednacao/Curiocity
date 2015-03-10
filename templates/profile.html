@@ -40,6 +40,8 @@
 	<script>
 	var latitude = Number("{{ lat }}");
 	var longitude = Number("{{ long }}");
+	var profile_latitude = "{{ location.profile_latitude }}"
+	var profile_longitude = "{{ location.profile_longitude }}"
 
 	// THIS IS THE PUBLIC ACCESS TOKEN!!!		// THIS IS THE PUBLIC ACCESS TOKEN!!!
 	L.mapbox.accessToken = "pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg";
@@ -52,29 +54,53 @@
 
     // alert("HEY MEGGIE, UR NOT CRAY");
 
-	featureLayer.setGeoJSON({
+	featureLayer.setGeoJSON([
+		
     // this feature is in the GeoJSON format: see geojson.org
     // for the full specification
-	    type: 'Feature',
-	    geometry: {
-	        type: 'Point',
-	        // coordinates here are in longitude, latitude order because
-	        // x, y is the standard for GeoJSON and many formats
-	        coordinates: [
-	          longitude,
-	          latitude 
-	        ]
-	    },
-	    properties: {
-	        title: 'Current Location',
-	        description: [longitude, latitude],
-	        // one can customize markers by adding simplestyle properties
-	        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-	        'marker-size': 'medium',
-	        'marker-color': '#82CCB3',
-	        'marker-symbol': 'triangle'
-	    }
-	}).addTo(map);
+	    {
+	    	type: 'Feature',
+	    	geometry: {
+		        type: 'Point',
+		        // coordinates here are in longitude, latitude order because
+		        // x, y is the standard for GeoJSON and many formats
+		        coordinates: [
+		          longitude,
+		          latitude 
+		        ]
+	    	},
+		    properties: {
+		        title: 'Current Location',
+		        description: [longitude, latitude],
+		        // one can customize markers by adding simplestyle properties
+		        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+		        'marker-size': 'medium',
+		        'marker-color': '#82CCB3',
+		        'marker-symbol': 'triangle'
+			}
+		},
+		{
+			type: 'Feature',
+		    geometry: {
+		        type: 'Point',
+		        // coordinates here are in longitude, latitude order because
+		        // x, y is the standard for GeoJSON and many formats
+		        coordinates: [
+		          profile_longitude,
+		          profile_latitude 
+		        ]
+		    },
+		    properties: {
+		        title: 'Profile Location',
+		        description: [profile_longitude, profile_latitude],
+		        // one can customize markers by adding simplestyle properties
+		        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+		        'marker-size': 'large',
+		        'marker-color': '#E60000',
+		        'marker-symbol': 'star'
+		    }
+		}
+	]).addTo(map);
 
 	</script>
 

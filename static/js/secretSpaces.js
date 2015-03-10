@@ -28,7 +28,7 @@ var secretSpaces = {
 	},
 
 	storePosition: function(position){
-		alert("STORE POSITION");
+		alert("Position Stored!");
 		debugger;
 		var coordinates = "Latitude: " + position.coords.latitude + 
 		    "Longitude: " + position.coords.longitude;
@@ -41,6 +41,10 @@ var secretSpaces = {
 
 	getLocation: function(){
 		debugger;
+		// when you call another function inside function,
+		//   the scope outside of function is lost
+		// abstracting self.storePosition into an anonymous function
+		//   lets us use it within the secretSpaces scope
 		var self = this;
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position){
