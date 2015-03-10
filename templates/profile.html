@@ -45,9 +45,9 @@
 
 	// THIS IS THE PUBLIC ACCESS TOKEN!!!		// THIS IS THE PUBLIC ACCESS TOKEN!!!
 	L.mapbox.accessToken = "pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg";
-	var map = L.mapbox.map('map-two', 'ecao.lce9cd80');
-					scrollWheelZoom: false;
-	// .setView([37, -122]);
+	var map = L.mapbox.map('map-two', 'ecao.lce9cd80')
+	//center on lat, long with zoom level 13
+	.setView([latitude, longitude], 13);
 
 	var featureLayer = L.mapbox.featureLayer()
     .addTo(map);
@@ -103,7 +103,7 @@
 	]).addTo(map);
 
 	</script>
-	<script src="http://api.tiles.mapbox.com/v4/directions/mapbox.walking/{{long}},{{lat}};{{location.profile_longitude}},{{location.profile_latitude}}.json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg"></script>
+	<script src="http://api.tiles.mapbox.com/v4/directions/mapbox.walking/-122.4366,-38.4;-122.645,37.4.json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg"></script>
 
 	<script src="/static/directions.js"></script>
 {% endblock %}
