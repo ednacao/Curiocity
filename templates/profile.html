@@ -135,12 +135,14 @@
 	function getDirections(){
 		debugger;
 		alert("I'm inside getDirections()!");
-		$.get("http://api.tiles.mapbox.com/v4/directions/ecao.lce9cd80/{longitude},{latitude};{profile_longitude},{profile_latitude}.json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg", function(data){
-			alert('tings');
-			console.log(data);
+		$.get("http://api.tiles.mapbox.com/v4/directions/mapbox.driving/" + longitude + "," + latitude + ";" + 27.64 + "," + 34.33 + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg", function(data){
+			alert('tings' + data);
+			
+			console.log("http://api.tiles.mapbox.com/v4/directions/mapbox.walking/" + longitude + "," + latitude + ";" + profile_longitude + "," + profile_latitude + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg")
 		});
 	}
 
+	getDirections();
 
     // var waypoints = [];
     // var polyline = L.polyline([]).addTo(map);
