@@ -34,8 +34,8 @@ var secretSpaces = {
 		    "Longitude: " + position.coords.longitude;
 		    var longitude = position.coords.longitude;
 		    var latitude = position.coords.latitude;
-		this.showPosition(longitude, latitude); //FIXME - undefined is not a function, 'this' is a window (should be an object)
-		this.getCoords(position); //FIXME - undefined is not a function
+		this.showPosition(longitude, latitude);
+		this.getCoords(position); 
 		return position;
 	},
 
@@ -54,6 +54,7 @@ var secretSpaces = {
 	    	console.log ("Geolocation is not supported by this browser.");
 		}
 	},
+
 
 
 };
