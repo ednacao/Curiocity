@@ -115,34 +115,54 @@
     // });
 
 
+	// FIX ME -- ASSIGN FUNCTION TO VAR AND PARSE OUT JSON TO GET WAYPOINTS THAT WILL BE A PARAM FOR THE VAR LINE_POINTS
+	function getDirections(){
+		// alert("I'm inside getDirections()!");
+		$.getJSON("http://api.tiles.mapbox.com/v4/directions/mapbox.driving/" + longitude + "," + latitude + ";" + profile_longitude + "," + profile_latitude + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg", function(data){
+			parseData(data);
+			
+			console.log("http://api.tiles.mapbox.com/v4/directions/mapbox.walking/" + longitude + "," + latitude + ";" + profile_longitude + "," + profile_latitude + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg")
+		});
+	}
+	getDirections();
+
+
+
+	function parseData(data){
+		// alert("DATA IN PARSEDATA() WUT");
+		console.log(data);
+
+		var route = data.routes[0].geometry.coordinates;
+		route = route.map(function(point){
+			return [point[1], point[0]];
+		});
+		polyline.setLatLngs(route);
+	}
+
+
+
+	// var directionPolyline = getDirections()
+	// var directionsTwo = directionPolyline;
+
+
+
+
 	//FIX ME -- need to popular line_points with declared variables
     var line_points = [
     [latitude, longitude],
     [profile_latitude, profile_longitude],
 	];
 
-	// Define polyline options
-	// http://leafletjs.com/reference.html#polyline
-	var polyline_options = {
-	    color: '#C33'
-	};
-
 	// Defining a polygon here instead of a polyline will connect the
 	// endpoints and fill the path.
 	// http://leafletjs.com/reference.html#polygon
 	var polyline = L.polyline(line_points, polyline_options).addTo(map);
 
-	function getDirections(){
-		debugger;
-		alert("I'm inside getDirections()!");
-		$.get("http://api.tiles.mapbox.com/v4/directions/mapbox.driving/" + longitude + "," + latitude + ";" + 27.64 + "," + 34.33 + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg", function(data){
-			alert('tings' + data);
-			
-			console.log("http://api.tiles.mapbox.com/v4/directions/mapbox.walking/" + longitude + "," + latitude + ";" + profile_longitude + "," + profile_latitude + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg")
-		});
-	}
-
-	getDirections();
+	// Define polyline options
+	// http://leafletjs.com/reference.html#polyline
+	var polyline_options = {
+	    color: '#C33'
+	};	
 
     // var waypoints = [];
     // var polyline = L.polyline([]).addTo(map);

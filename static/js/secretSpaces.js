@@ -40,7 +40,6 @@ var secretSpaces = {
 	},
 
 	getLocation: function(){
-		debugger;
 		// when you call another function inside function,
 		//   the scope outside of function is lost
 		// abstracting self.storePosition into an anonymous function
