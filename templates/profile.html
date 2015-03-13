@@ -6,7 +6,16 @@
 {% block body %}
 
 	<div id='map-two' class='map pad2'>Map</div>
-	<div>
+
+	<div class='text_directions'>
+		Directions
+	</div>
+
+	<div id='profile_image'>
+		<img src="{{ image.url }}" ></img>
+	</div>
+
+	<div id'profile_info'>
 		<table style="width:100%">
 		<tr>
 			<td>Name:</td><td> {{ location.name }}</td><br>
@@ -32,9 +41,10 @@
 		</tr>
 	</table>
 	</div>
-	<div>
-		<img src="{{ image.url }}" ></img>
-	</div>
+
+
+
+
 	<!-- placeholder map for lay	out reference -->
 	<script>
 	var latitude = Number("{{ lat }}");
@@ -42,10 +52,10 @@
 	var profile_latitude = Number("{{ location.profile_latitude }}");
 	var profile_longitude = Number("{{ location.profile_longitude }}");
 
-	// THIS IS THE PUBLIC ACCESS TOKEN!!!		// THIS IS THE PUBLIC ACCESS TOKEN!!!
+	// THIS IS THE PUBLIC ACCESS TOKEN
 	L.mapbox.accessToken = "pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg";
 	var map = L.mapbox.map('map-two', 'ecao.lce9cd80')
-	//center on lat, long with zoom level 13
+	//center on lat, long with zoom level 15
 	.setView([latitude, longitude], 15);
 
 	// Disable zoom handlers.
@@ -55,10 +65,7 @@
 	var featureLayer = L.mapbox.featureLayer()
     .addTo(map);
 
-    // alert("HEY MEGGIE, UR NOT CRAY");
-
 	featureLayer.setGeoJSON([
-		
     // this feature is in the GeoJSON format: see geojson.org
     // for the full specification
 	    {
@@ -100,13 +107,10 @@
 		        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
 		        'marker-size': 'medium',
 		        'marker-color': '#E60000',
-		        'marker-symbol': 'triangle'
+		        'marker-symbol': 'park'
 		    }
 		}
 	]).addTo(map);
-
-	// getWaypoints();
-
 
     // map.on('click', function(e) {
     //     // Let's add a callback to makeMarker so that it can draw the route only
@@ -114,12 +118,10 @@
     //     makeMarker(e, drawRoute);
     // });
 
-
-	// FIX ME -- ASSIGN FUNCTION TO VAR AND PARSE OUT JSON TO GET WAYPOINTS THAT WILL BE A PARAM FOR THE VAR LINE_POINTS
 	function getDirections(){
 		// alert("I'm inside getDirections()!");
 		$.getJSON("http://api.tiles.mapbox.com/v4/directions/mapbox.driving/" + longitude + "," + latitude + ";" + profile_longitude + "," + profile_latitude + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg", function(data){
-			parseData(data);
+			drawRoute(data);
 			
 			console.log("http://api.tiles.mapbox.com/v4/directions/mapbox.walking/" + longitude + "," + latitude + ";" + profile_longitude + "," + profile_latitude + ".json?access_token=pk.eyJ1IjoiZWNhbyIsImEiOiJHVEFEM1NnIn0.6hb7Mp5jlFNiu22rsZkDUg")
 		});
@@ -127,78 +129,64 @@
 	getDirections();
 
 
-
-	function parseData(data){
+	function drawRoute(data){
 		// alert("DATA IN PARSEDATA() WUT");
 		console.log(data);
-
+		debugger;
 		var route = data.routes[0].geometry.coordinates;
 		route = route.map(function(point){
 			return [point[1], point[0]];
 		});
 		polyline.setLatLngs(route);
+
+		var directionList = [data.routes[0].steps[0].maneuver.instruction,
+			data.routes[0].steps[1].maneuver.instruction,
+			data.routes[0].steps[2].maneuver.instruction,
+			data.routes[0].steps[3].maneuver.instruction,
+			data.routes[0].steps[4].maneuver.instruction,
+			data.routes[0].steps[5].maneuver.instruction,
+			data.routes[0].steps[6].maneuver.instruction];
+
+		console.log(directionList);
+
+		//ERROR- 'cannot use 'in' operator to search for '25' in Head west on Sutter Street'
+		// $.each(directionList, function(){
+		// 	$.each(this, function(data) {
+		// 		alert('i am inside of this jquery thing for the direction list');
+		// 	console.log(directionList);
+		// 	});
+		// });
+
+
+		$( "div.text_directions" ).html(function(data) {
+			debugger;
+  			$( "div.text_directions").append(directionList);
+  				return directionList;
+  				// return "<p>'this will eventually be directions'</p>";
+});
 	}
 
-
-
-	// var directionPolyline = getDirections()
-	// var directionsTwo = directionPolyline;
-
-
-
-
-	//FIX ME -- need to popular line_points with declared variables
     var line_points = [
     [latitude, longitude],
     [profile_latitude, profile_longitude],
 	];
+
+	// Define polyline options
+	// http://leafletjs.com/reference.html#polyline
+	var polyline_options = {
+	    color: '#F00'
+	};	
 
 	// Defining a polygon here instead of a polyline will connect the
 	// endpoints and fill the path.
 	// http://leafletjs.com/reference.html#polygon
 	var polyline = L.polyline(line_points, polyline_options).addTo(map);
 
-	// Define polyline options
-	// http://leafletjs.com/reference.html#polyline
-	var polyline_options = {
-	    color: '#C33'
-	};	
+	// FIX ME !!!!!
+	// var directionList = data.routes[0].steps[0].maneuver.instruction;
+	// 	return directionList;
 
-    // var waypoints = [];
-    // var polyline = L.polyline([]).addTo(map);
-    // function makeMarker(e, done) {
-    //     var marker = L.marker(e.latlng, { draggable: true }).addTo(map);
-    //     marker.on('dragend', drawRoute);
-    //     waypoints.push(marker);
-    //     return done();
-    // }
 
-    // function drawRoute() {
-    //     if (waypoints.length < 2) return;
-    //     // Directions API request looks like
-    //     // http://api.tiles.mapbox.com/v4/directions/mapbox.driving/
-    //     //    -122.42,37.78;-77.03,38.91.json?access_token={access_token}
-    //     // We'll construct this using latlngs from the markers in waypoints.
-    //     var points = waypoints.map(function(marker) {
-    //         var latlng = marker._latlng;
-    //         return [latlng.lng, latlng.lat].join(',');
-    //     }).join(';');
-
-    //     var directionsUrl = 'http://api.tiles.mapbox.com/v4/directions/mapbox.driving/' +
-    //     points + '.json?access_token=' + L.mapbox.accessToken;
-
-    //     $.get(directionsUrl, function(data) {
-    //         // Do something with the directions returned from the API.
-    //         var route = data.routes[0].geometry.coordinates;
-    //         route = route.map(function(point) {
-    //             // Turns out if we zoom out we see that the lat/lngs are flipped,
-    //             // which is why it didn't look like they were being added to the
-    //             // map. We can invert them here before drawing.
-    //             return [point[1], point[0]];
-    //         });
-    //         polyline.setLatLngs(route);
-    //     });
-    // }
 
 	</script>
 

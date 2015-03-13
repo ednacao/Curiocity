@@ -39,7 +39,7 @@ var secretSpaces = {
 		return position;
 	},
 
-	getLocation: function(){
+	getLocation: function(){	
 		// when you call another function inside function,
 		//   the scope outside of function is lost
 		// abstracting self.storePosition into an anonymous function
