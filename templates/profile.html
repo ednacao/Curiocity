@@ -1,45 +1,56 @@
 {% extends 'base.html' %}
 {% block head %}
+{% endblock %}
+
+{% block body %}
+
     <title>Profile</title>
     <link rel="stylesheet" href="../static/css/cover.css">
-{% endblock %}
-{% block body %}
+
+
+
+
+
 
 	<div id='map-two' class='map pad2'>Map</div>
 
-	<div class='text_directions'>
+	<ul class='text_directions'>
 		Directions
-	</div>
+	</ul>
 
 	<div id='profile_image'>
 		<img src="{{ image.url }}" ></img>
 	</div>
 
-	<div id'profile_info'>
+
+<!-- 	TAKE THIS OUT OF TABLE OKAY?! -->
+	<div id='profile_info'>
 		<table style="width:100%">
 		<tr>
-			<td>Name:</td><td> {{ location.name }}</td><br>
+		<td>Name:</td><td> {{ location.name }}</td><br>
 		<tr>
-			<td>Address:</td><td> {{ location.address }}</td><br>
+		<td>Address:</td><td> {{ location.address }}</td><br>
 		<tr>
-			<td>Description:</td><td> {{ location.description }}</td><br>
+		<td>Description:</td><td> {{ location.description }}</td><br>
 		<tr>
-			<td>Hours:</td><td> {{ location.hours }}</td><br>
+		<td>Hours:</td><td> {{ location.hours }}</td><br>
 		<tr>
-			<td>Seating Info:</td><td> {{ location.seating_info }}</td><br>
+		<td>Seating Info:</td><td> {{ location.seating_info }}</td><br>
 		<tr>
-			<td>Food Info:</td><td> {{ location.food_info }}</td><br>
+		<td>Food Info:</td><td> {{ location.food_info }}</td><br>
 		<tr>
-			<td>Restrooms?</td><td> {{ location.restrooms }}</td><br>
+		<td>Restrooms?</td><td> {{ location.restrooms }}</td><br>
 		<tr>
-			<td>Food?</td><td> {{ location.food_yn }}</td><br>
+		<td>Food?</td><td> {{ location.food_yn }}</td><br>
 		<tr>
-			<td>Seating?</td><td> {{ location.seating_yn}}</td><br>
+		<td>Seating?</td><td> {{ location.seating_yn}}</td><br>
 		<br>
 		<tr>
 			<td>Current Location is</td><td>Latitude: {{ lat }}, Longitude: {{ long }}</td>
 		</tr>
 	</table>
+	<br>
+	<a href="/list">Back</a>
 	</div>
 
 
@@ -139,29 +150,30 @@
 		});
 		polyline.setLatLngs(route);
 
-		var directionList = [data.routes[0].steps[0].maneuver.instruction,
-			data.routes[0].steps[1].maneuver.instruction,
-			data.routes[0].steps[2].maneuver.instruction,
-			data.routes[0].steps[3].maneuver.instruction,
-			data.routes[0].steps[4].maneuver.instruction,
-			data.routes[0].steps[5].maneuver.instruction,
-			data.routes[0].steps[6].maneuver.instruction];
+
+		//ITERATE
+		var directionList = [];
 
 		console.log(directionList);
 
+		
+		for (var i=0; i < data.routes[0].steps.length; i++) {
+			var element = "<li>" + data.routes[0].steps[i].maneuver.instruction + "</li>"
+			directionList.push(element);
+		}
+
 		//ERROR- 'cannot use 'in' operator to search for '25' in Head west on Sutter Street'
-		// $.each(directionList, function(){
-		// 	$.each(this, function(data) {
-		// 		alert('i am inside of this jquery thing for the direction list');
+		// $.each(data.routes[0].steps, function(index){
+		// 	directionList.push(data.routes[0].steps[index]);
 		// 	console.log(directionList);
-		// 	});
+
 		// });
 
 
-		$( "div.text_directions" ).html(function(data) {
+		$( "ul.text_directions" ).html(function(data) {
 			debugger;
-  			$( "div.text_directions").append(directionList);
-  				return directionList;
+  			$( "ul.text_directions").append(directionList);
+  				//return directionList;
   				// return "<p>'this will eventually be directions'</p>";
 });
 	}
