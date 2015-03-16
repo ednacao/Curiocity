@@ -26,24 +26,24 @@
 <!-- 	TAKE THIS OUT OF TABLE OKAY?! -->
 	<div id='profile_info'>
 		<table style="width:100%">
-		<tr>
-		<td>Name:</td><td> {{ location.name }}</td><br>
-		<tr>
-		<td>Address:</td><td> {{ location.address }}</td><br>
-		<tr>
-		<td>Description:</td><td> {{ location.description }}</td><br>
-		<tr>
-		<td>Hours:</td><td> {{ location.hours }}</td><br>
-		<tr>
-		<td>Seating Info:</td><td> {{ location.seating_info }}</td><br>
-		<tr>
-		<td>Food Info:</td><td> {{ location.food_info }}</td><br>
-		<tr>
-		<td>Restrooms?</td><td> {{ location.restrooms }}</td><br>
-		<tr>
-		<td>Food?</td><td> {{ location.food_yn }}</td><br>
-		<tr>
-		<td>Seating?</td><td> {{ location.seating_yn}}</td><br>
+		<ul>
+			<li>Name: {{ location.name }}</li>
+			
+			<li>Address: {{ location.address }}</li>
+			
+			<li>Description: {{ location.description }}</li>
+			
+			<li>Hours: {{ location.hours }}</li>
+			
+			<li>Seating Info: {{ location.seating_info }}</li>
+			
+			<li>Food Info: {{ location.food_info }}</li>
+			
+			<li>Restrooms? {{ location.restrooms }}</li>
+			
+			<li>Food? {{ location.food_yn }}</li>
+			
+			<li>Seating? {{ location.seating_yn}}</li>
 		<br>
 		<tr>
 			<td>Current Location is</td><td>Latitude: {{ lat }}, Longitude: {{ long }}</td>

@@ -31,11 +31,12 @@ class Location(Base):
     hours = Column(String(128), nullable=True)
     seating_info = Column(String(128), nullable=True)
     food_info = Column(String(128), nullable=True)
-    restrooms = Column(String(128), nullable=True)
+    restrooms_yn = Column(String(3), nullable=True)
     food_yn = Column(String(3), nullable=True)
     seating_yn = Column(String(3), nullable=True)
     profile_longitude = Column(Integer, nullable=False)
     profile_latitude = Column(Integer, nullable=False)
+    image_url = Column(String(128), nullable=True)
 
 
     def __repr__(self):
