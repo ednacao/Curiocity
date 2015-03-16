@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
-{% block head %}
-{% endblock %}
+
 
 {% block body %}
 
     <title>Profile</title>
     <link rel="stylesheet" href="../static/css/cover.css">
 
+<!--     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/flexslider.css" rel="stylesheet" >
+    <link href="../static/css/styles.css" rel="stylesheet">
+    <link href="../static/css/queries.css" rel="stylesheet">
+    <link href="../static/css/animate.css" rel="stylesheet">
+ -->
 
 
 
@@ -23,9 +33,7 @@
 	</div>
 
 
-<!-- 	TAKE THIS OUT OF TABLE OKAY?! -->
 	<div id='profile_info'>
-		<table style="width:100%">
 		<ul>
 			<li>Name: {{ location.name }}</li>
 			
@@ -35,18 +43,14 @@
 			
 			<li>Hours: {{ location.hours }}</li>
 			
-			<li>Seating Info: {{ location.seating_info }}</li>
-			
-			<li>Food Info: {{ location.food_info }}</li>
-			
 			<li>Restrooms? {{ location.restrooms }}</li>
 			
 			<li>Food? {{ location.food_yn }}</li>
 			
 			<li>Seating? {{ location.seating_yn}}</li>
 		<br>
-		<tr>
-			<td>Current Location is</td><td>Latitude: {{ lat }}, Longitude: {{ long }}</td>
+			<li>Current Location is:<br>
+				Latitude: {{ lat }}, Longitude: {{ long }}</li>
 		</tr>
 	</table>
 	<br>
@@ -158,7 +162,7 @@
 
 		
 		for (var i=0; i < data.routes[0].steps.length; i++) {
-			var element = "<li>" + data.routes[0].steps[i].maneuver.instruction + "</li>"
+			var element = "<ul><li>" + data.routes[0].steps[i].maneuver.instruction + "</li></ul>"
 			directionList.push(element);
 		}
 
