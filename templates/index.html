@@ -4,20 +4,27 @@
 <html>
 <head>
     {% block title %}
-     Index
     {% endblock %}
 </head>
-	<body style="background: url(../static/img/labyrinth_large.jpg) no-repeat center center fixed;-webkit-background-size: cover;
+<!-- 	<body style="background: url(../static/img/labyrinth_large.jpg) no-repeat center center fixed;-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;width:100%;height:100%;margin:0" >
+  background-size: cover;width:100%;height:100%;margin:0" > -->
 
-<div class="row">
-    <div class="col-md-8 col-md-offset-2 text-center inner">
-      <h1 class="animated fadeInDown"><span><a href="/list">Curiocity</a></span></h1>
-      <p class="animated fadeInUp delay-05s">Discover hidden spaces in the city.</p>
-    </div>
-  </div>
+<section class="hero" id="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-right navicon">
+          <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+        </div>
+      </div>
+	<div class="row">
+	    <div class="col-md-8 col-md-offset-2 text-center inner">
+	      <h1 class="animated fadeInDown"><span><a href="/list">Curiocity</a></span></h1>
+	      <p class="animated fadeInUp delay-05s">Discover hidden spaces in San Francisco.</p>
+	    </div>
+	  </div>
+</section>
 <!--   <div class="row">
     <div class="col-md-6 col-md-offset-3 text-center">
       <a href="http://tympanus.net/codrops/?p=19439" class="learn-more-btn">Back to the article</a>
@@ -33,7 +40,7 @@
 		<li><a href="./create">create</a></li>
 		<li><a href="./login">log in</a></li>
 		<br>
-		<li><button id="get-location">Where Am I?</button>
+		<li><button id="get-location">Find Me.</button>
 		<p id="demo"></p>
 	</ul>
       </div>
