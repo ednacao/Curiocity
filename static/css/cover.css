@@ -5,10 +5,21 @@ body {
 .starter-template {
   padding: 40px 15px;
   text-align: center;
-  font-family:Futura;
+  font-family: 'Varela Round', Futura;
   height:100%; margin:0; padding:0;
   background: rgba(255,255,255,0.5)
   }
+
+.profile-title {
+  font-size: 16pt;
+}
+
+.profile-info {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  padding-left: 100px;
+  padding-right: 600px;
+}
 
 .overlay{
     background: rgba(255,255,255,0.5);
