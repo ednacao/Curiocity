@@ -67,9 +67,6 @@ def process_login():
         return redirect("/create")
 
 
-# FIX ME - BE ABLE TO ACCESS THE SESSION USING JS
-# THE SESSION IS A RETURN OBJECT THAT EXISTS
-# ACROSS SCRIPTS --- CONSOLE.LOG Session to see what's in it
 @app.route("/pushcoords", methods=["GET"])
 def push_coords():
     """Receive the lat long of current user and store it in the session"""

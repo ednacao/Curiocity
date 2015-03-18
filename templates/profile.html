@@ -1,45 +1,58 @@
 {% extends 'base.html' %}
 
+{% block title %}Profile{% endblock %}
+
+{% block head %} 
+<link rel="stylesheet" href="../static/css/cover.css">
+{% endblock %}
 
 {% block body %}
 
-    <title>Profile</title>
-    <link rel="stylesheet" href="../static/css/cover.css">
 
-    <div class='profile-title'>
-    	<center><h1>{{ location.name }}</h1></center>
-    </div>
+	<div class='row'>
 
-	<div class='profile-image'>
-		<center><img src="{{ image.url }}" ></img></center>
-	</div>
+		<div class='col-md-6'>
+			<div class='profile-title'>
+				<center><h1>{{ location.name }}</h1></center>
+			</div>
+
+					<div class='profile-image col-md-12 col-md-offset-3'>
+						<img style="width:400px; height:auto;" src="{{ image.url }}" ></img>
+					</div>	
 
 
-	<div class='profile-info'>
-		<ul>
-			<li>Address: {{ location.address }}</li>
+			<div class='profile-info'>
+				<ul>
+					<li>Address: {{ location.address }}</li>
+					
+					<li>Description: {{ location.description }}</li>
+					
+					<li>Hours: {{ location.hours }}</li>
+					
+					<li>Restrooms? {{ location.restrooms }}</li>
+					
+					<li>Food? {{ location.food_yn }}</li>
+					
+					<li>Seating? {{ location.seating_yn}}</li>
+				<br>
+					<li>Current Coordinates:<br>
+						 {{ lat }}, {{ long }}</li>
+				<br>
+
+				<button type="button" id="show" class="col-md-2 col-md-offset-5 btn btn-default btn-sm">Take me there.</button>
+
+				<br>
+				<br>
+				<a href="/list">Back</a>
+			</div>
+		</div>
+
+	<div class='col-md-6'>
+			<div id='map-two' class='map pad2'>Map</div>
 			
-			<li>Description: {{ location.description }}</li>
-			
-			<li>Hours: {{ location.hours }}</li>
-			
-			<li>Restrooms? {{ location.restrooms }}</li>
-			
-			<li>Food? {{ location.food_yn }}</li>
-			
-			<li>Seating? {{ location.seating_yn}}</li>
-		<br>
-			<li>Current Location is:<br>
-				Latitude: {{ lat }}, Longitude: {{ long }}</li>
-	<br>
-	<a href="/list">Back</a>
-	</div>
-
-
-	<div id='map-two' class='map pad2'>Map</div>
-		<ul class='text_directions'>
-			Directions
-		</ul>
+				<ul class='text_directions' id='text_directions'>
+					Directions
+				</ul>
 
 	<!-- placeholder map for lay	out reference -->
 	<script>
@@ -184,9 +197,10 @@
 	// 	return directionList;
 
 
-
 	</script>
 
+		</div>
+		</div>
 
 {% endblock %}
 

@@ -27,8 +27,8 @@
     <link href="/static/css/animate.css" rel="stylesheet">
 
 
-<!--   </head>
-  <body>
+</head>
+<!--   <body>
     <a href="../..">
       <img alt="Brand" src="http://www.stationcouriers.co.uk/addons/themes/station/img/home_small_icon.gif"></a> -->
 <!--     navbar code via bootstrap -->
@@ -40,7 +40,25 @@
       </div>
     </nav> -->
 <!--   </div> -->
-    
+    <body id="top">
+        <header id="home">
+          <nav>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+                  <nav class="pull">
+                    <ul class="top-nav">
+                      <li><a href="/map">Full Map <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                      <li><a href="/list">Spaces <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                      <li><a href="/login">Log In <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                      <li><a href="/about">About <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                      <li><a href="http://www.linkedin.com/in/ednacao">Get in Touch <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </nav>
 
 
 
@@ -61,10 +79,16 @@
           {% endwith %}
        </div>
        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-       <script type="text/javascript" src="../static/js/secretSpaces.js">
-       </script>
+       <script type="text/javascript" src="../static/js/secretSpaces.js"></script>
+       <script src="/static/js/waypoints.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/scripts.js"></script>
+        <script src="/static/js/jquery.flexslider.js"></script>
+        <script src="/static/js/modernizr.js"></script>
+
        
     {% block body %}{% endblock %}
        
   </body>
+  </header>
 </html>

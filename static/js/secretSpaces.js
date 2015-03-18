@@ -60,4 +60,9 @@ var secretSpaces = {
 
 $(document).ready(function() {
   secretSpaces.init();
+  	$("#text_directions").hide();
+
+	$("#show").click(function(){
+   		$("#text_directions").show();
+	});
 });
