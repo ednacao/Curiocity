@@ -117,13 +117,12 @@ def process_acct():
 	password =request.form["password"]
 	new_user_acct = model.User(email=email, password=password)
 	model_session.add(new_user_acct)
-	model_session.commit()
+    model_session.commit()
 	flash("Your account has been succesfully added.")
 	flask_session["email"] = email
 	return redirect("/")
 
-# FIX ME ---- display_images not working, 
-# and images=display_images is not correct
+
 @app.route("/list")
 def list():
     all_locations = model.session.query(model.Location).all()
