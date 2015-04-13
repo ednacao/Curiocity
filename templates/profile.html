@@ -34,10 +34,10 @@
 					<li>Food? {{ location.food_yn }}</li>
 					
 					<li>Seating? {{ location.seating_yn}}</li>
-				<br>
+					
+<!-- 				<br>
 					<li>Current Coordinates:<br>
-						 {{ lat }}, {{ long }}</li>
-				<br>
+						 {{ lat }}, {{ long }}</li> -->
 
 				<button type="button" id="show" class="col-md-2 col-md-offset-5 btn btn-default btn-sm">Take me there.</button>
 
@@ -192,9 +192,6 @@
 	// http://leafletjs.com/reference.html#polygon
 	var polyline = L.polyline(line_points, polyline_options).addTo(map);
 
-	// FIX ME !!!!!
-	// var directionList = data.routes[0].steps[0].maneuver.instruction;
-	// 	return directionList;
 
 
 	</script>
