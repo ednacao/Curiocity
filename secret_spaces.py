@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, flash, jsonify
+2from flask import Flask, render_template, redirect, request, flash, jsonify
 from flask import session as flask_session
 from model import session as model_session
 from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
@@ -96,7 +96,7 @@ def load_profile_map():
     #function will use request.form/args (?) and place them in the URL query
     #string that will populate the map; JSON??
     #use jinga in the map html form template to populate this URL string
-    pass #FIX ME --- NEED TO FIGURE OUT WHERE NEW MAP GOES
+    pass 
 
 
 @app.route("/user", methods=["GET"])
