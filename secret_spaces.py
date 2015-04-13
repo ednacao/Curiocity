@@ -1,4 +1,4 @@
-2from flask import Flask, render_template, redirect, request, flash, jsonify
+from flask import Flask, render_template, redirect, request, flash, jsonify
 from flask import session as flask_session
 from model import session as model_session
 from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
@@ -114,8 +114,8 @@ def create_acct():
 @app.route("/create", methods=["POST"])
 def process_acct():
 	email = request.form["email"]
-	password =request.form["password"]
-	new_user_acct = model.User(email=email, password=password)
+    password =request.form["password"]
+    new_user_acct = model.User(email=email, password=password)
 	model_session.add(new_user_acct)
     model_session.commit()
 	flash("Your account has been succesfully added.")
