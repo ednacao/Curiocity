@@ -4,8 +4,8 @@ Curiocity is an exploration app that helps you discover secret spaces in San Fra
 ![Home Page](https://github.com/ednacao/Curiocity/blob/master/static/img/curiocity_landing.png)
 
 ###Technology Stack
-####Application: Python, Flask, SQLAlchemy, SQLite, Jinja
+<b>Application:</b> Python, Flask, SQLAlchemy, SQLite, Jinja
 
-####APIs: HTML5 Geolocation API, Mapbox.js, Mapbox Walking Directions API
+<b>APIs:</b> HTML5 Geolocation API, Mapbox.js, Mapbox Walking Directions API
 
-####Presentation Layer: JQuery, JavaScript, Bootstrap, CSS3, HTML5
+<b>Presentation Layer:</b> JQuery, JavaScript, Bootstrap, CSS3, HTML5
