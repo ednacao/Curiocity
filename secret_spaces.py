@@ -1,8 +1,8 @@
 from flask import Flask, render_template, redirect, request, flash, jsonify
 from flask import session as flask_session
 from model import session as model_session
+from model import urllib2
 from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
-import model, urllib2
 import os
 
 # "__name__" is a special Python variable for the name of the current module; Flask wants
@@ -25,19 +25,17 @@ def start_here():
     return render_template("index.html")
 
 
-# route to display an "about" page
 @app.route('/about')
 def say_hello():
     return render_template("about.html")
 
 
-# loads a form for user to log in
 @app.route("/login", methods=["GET"])
 def show_login():
     return render_template("login.html")
 
 
-# takings user form input and checked against db to see if user exists;
+# user form input checked against db to see if user exists;
 # if user exists, success message flashes
 # if user exists but pw is incorrect, an 'incorrect pw' messages flashes
 # if user does not exist in db, then page is redirect to the 'create acct' page
@@ -84,19 +82,15 @@ def push_coords():
     print "session longitude: %s" % longitude
 
     print "request.args = %s" % request.args
-    # the result above is currently ImmutableMultiDict([('lat, u'37.7886534'), ('long, u'-122.41')])
+    #ImmutableMultiDict([('lat, u'37.7886534'), ('long, u'-122.41')])
 
     return "Stuff happening here!"
 
-# TEST -- take lat long from session in the GET pushcoords route and place in 
-# form template that contains mapbox api map latlong loading capability
+
 @app.route("/pushcoords", methods=["POST"])
 def load_profile_map():
     """Take user lat long and send to mapbox to populate map datapoint"""
-    #function will use request.form/args (?) and place them in the URL query
-    #string that will populate the map; JSON??
-    #use jinga in the map html form template to populate this URL string
-    pass 
+    pass
 
 
 @app.route("/user", methods=["GET"])

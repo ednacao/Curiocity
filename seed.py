@@ -20,7 +20,7 @@ def load_locations(session):
             location_longitude = row[10]
             location_latitude = row[11]
             location_url = row[12]
-            new_locations = Location(name=location_name, address=location_address, 
+            new_locations = Location(name=location_name, address=location_address,
                                 description=location_description,
                                 hours=location_hours, seating_info=location_seating_info,
                                 food_info=location_food_info, restrooms_yn=location_restrooms_yn,
@@ -28,7 +28,7 @@ def load_locations(session):
                                 profile_longitude=location_longitude, profile_latitude=location_latitude,
                                 image_url=location_url)
             session.add(new_locations)
-        session.commit() 
+        session.commit()
 
 def load_images(session):
     filename=("./POPOS_Listings_images.csv")
