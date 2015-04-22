@@ -1,6 +1,4 @@
 # Curiocity
-######Final project for Hackbright Software Engineering Fellowship
-
 Curiocity is an exploration app that helps you discover secret spaces in San Francisco. The app uses your current location to connect you to obscure and hidden areas that are easily overlooked. Inspired by the recent resurgence of interest in privately-owned public open spaces in San Francisco, Curiocity navigates you through hidden city treasures, from a rooftop garden to a cliffside labyrinth. 
 
 ![Home Page](https://github.com/ednacao/Curiocity/blob/master/static/img/curiocity_landing.png)
