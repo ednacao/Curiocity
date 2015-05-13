@@ -21,40 +21,40 @@
 					</div>	
 
 
-			<div class='profile-info'>
-				<ul>
-					<li>Address: {{ location.address }}</li>
-					
-					<li>Description: {{ location.description }}</li>
-					
-					<li>Hours: {{ location.hours }}</li>
-					
-					<li>Restrooms? {{ location.restrooms }}</li>
-					
-					<li>Food? {{ location.food_yn }}</li>
-					
-					<li>Seating? {{ location.seating_yn}}</li>
-					
-<!-- 				<br>
-					<li>Current Coordinates:<br>
-						 {{ lat }}, {{ long }}</li> -->
+				<div class='profile-info'>
+					<ul>
+						<li>Address: {{ location.address }}</li>
+						
+						<li>Description: {{ location.description }}</li>
+						
+						<li>Hours: {{ location.hours }}</li>
+						
+						<li>Restrooms? {{ location.restrooms }}</li>
+						
+						<li>Food? {{ location.food_yn }}</li>
+						
+						<li>Seating? {{ location.seating_yn}}</li>
+						
+	<!-- 				<br>
+						<li>Current Coordinates:<br>
+							 {{ lat }}, {{ long }}</li> -->
 
-				<button type="button" id="show" class="col-md-2 col-md-offset-5 btn btn-default btn-sm">Take me there.</button>
+						<button type="button" id="show" class="col-md-2 col-md-offset-5 btn btn-default btn-sm">Take me there.</button>
 
-				<br>
-				<br>
-				<a href="/list">Back</a>
+						<br>
+						<br>
+						<a href="/list">Back</a>
+					</div>
 			</div>
-		</div>
 
-	<div class='col-md-6'>
-			<div id='map-two' class='map pad2'>Map</div>
-			
-				<ul class='text_directions' id='text_directions'>
-					Directions
-				</ul>
 
-	<!-- placeholder map for lay	out reference -->
+		<div class='col-md-6'>
+				<div id='map-two' class='map pad2'>Map</div>
+				
+					<ul class='text_directions' id='text_directions'>
+						Directions
+					</ul>
+
 	<script>
 	var latitude = Number("{{ lat }}");
 	var longitude = Number("{{ long }}");
@@ -191,13 +191,10 @@
 	// endpoints and fill the path.
 	// http://leafletjs.com/reference.html#polygon
 	var polyline = L.polyline(line_points, polyline_options).addTo(map);
-
-
-
 	</script>
 
-		</div>
-		</div>
+				</div>
+			</div>
 
 {% endblock %}
 
