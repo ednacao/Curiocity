@@ -40,7 +40,6 @@ def load_images(session):
             session.add(new_images)
         session.commit()
 
-
 def main(session):
     # You'll call each of the load_* functions with the session as an argument
     load_locations(session)
@@ -48,5 +47,5 @@ def main(session):
 
 
 if __name__ == "__main__":
-    s= model.connect()
+    s = model.connect()
     main(s)

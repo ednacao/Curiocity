@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, flash, jsonify
 from flask import session as flask_session
 from model import session as model_session
-from model import urllib2
+import model
 from secrets import DEFAULT_SECRET_TOKEN, DEFAULT_PUBLIC_TOKEN
 import os
 
@@ -21,7 +21,7 @@ app.debug = True
 
 
 @app.route('/')
-def start_here(): 
+def start_here():
     return render_template("index.html")
 
 
@@ -60,7 +60,7 @@ def process_login():
             print "got thru first"
             return redirect("/login")
 
-    else: 
+    else:
         flash("Create an account first!")
         return redirect("/create")
 
@@ -102,19 +102,19 @@ def load_user():
 
 @app.route('/create', methods=["GET"])
 def create_acct():
-	return render_template("create_acct.html")
+    return render_template("create_acct.html")
 
 
 @app.route("/create", methods=["POST"])
 def process_acct():
-	email = request.form["email"]
-    password =request.form["password"]
+    email = request.form["email"]
+    password = request.form["password"]
     new_user_acct = model.User(email=email, password=password)
-	model_session.add(new_user_acct)
+    model_session.add(new_user_acct)
     model_session.commit()
-	flash("Your account has been succesfully added.")
-	flask_session["email"] = email
-	return redirect("/")
+    flash("Your account has been succesfully added.")
+    flask_session["email"] = email
+    return redirect("/")
 
 
 @app.route("/list")
